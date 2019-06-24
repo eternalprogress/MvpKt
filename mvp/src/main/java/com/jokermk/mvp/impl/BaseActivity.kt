@@ -14,11 +14,11 @@ import kotlin.reflect.jvm.jvmErasure
 
 abstract class BaseActivity<out P : BasePresenter<BaseActivity<P>>> : AppCompatActivity(), IMvpView<P> {
 
-    final override val presenter: P
+    final override val mPresenter: P
 
     init {
-        presenter = createPresenterKt()
-        presenter.view = this
+        mPresenter = createPresenterKt()
+        mPresenter.mView = this
     }
 
     private fun createPresenterKt(): P {
@@ -57,44 +57,44 @@ abstract class BaseActivity<out P : BasePresenter<BaseActivity<P>>> : AppCompatA
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.onCreate(savedInstanceState)
+        mPresenter.onCreate(savedInstanceState)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {}
 
     override fun onStart() {
         super.onStart()
-        presenter.onStart()
+        mPresenter.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.onResume()
+        mPresenter.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        presenter.onPause()
+        mPresenter.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        presenter.onStop()
+        mPresenter.onStop()
     }
 
     override fun onDestroy() {
-        presenter.onDestroy()
+        mPresenter.onDestroy()
         super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        presenter.onSaveInstanceState(outState)
+        mPresenter.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         onViewStateRestored(savedInstanceState)
-        presenter.onViewStateRestored(savedInstanceState)
+        mPresenter.onViewStateRestored(savedInstanceState)
     }
 }

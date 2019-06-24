@@ -13,11 +13,11 @@ import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.jvm.jvmErasure
 
 abstract class BaseFragment<out P: BasePresenter<BaseFragment<P>>>: IMvpView<P>,Fragment() {
-    override val presenter: P
+    override val mPresenter: P
 
     init {
-        presenter = createPresenterKt()
-        presenter.view = this
+        mPresenter = createPresenterKt()
+        mPresenter.mView = this
     }
 
     private fun createPresenterKt(): P {
@@ -56,41 +56,41 @@ abstract class BaseFragment<out P: BasePresenter<BaseFragment<P>>>: IMvpView<P>,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter.onCreate(savedInstanceState)
+        mPresenter.onCreate(savedInstanceState)
     }
 
     override fun onStart() {
         super.onStart()
-        presenter.onStart()
+        mPresenter.onStart()
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.onResume()
+        mPresenter.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        presenter.onPause()
+        mPresenter.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        presenter.onStop()
+        mPresenter.onStop()
     }
 
     override fun onDestroy() {
-        presenter.onDestroy()
+        mPresenter.onDestroy()
         super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        presenter.onSaveInstanceState(outState)
+        mPresenter.onSaveInstanceState(outState)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        presenter.onViewStateRestored(savedInstanceState)
+        mPresenter.onViewStateRestored(savedInstanceState)
     }
 }

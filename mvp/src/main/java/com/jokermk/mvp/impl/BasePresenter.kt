@@ -7,7 +7,7 @@ import com.jokermk.mvp.IPresenter
 
 abstract class BasePresenter<out V: IMvpView<BasePresenter<V>>>: IPresenter<V> {
 
-    override lateinit var view: @UnsafeVariance V
+    override lateinit var mView: @UnsafeVariance V
 
     override fun onCreate(savedInstanceState: Bundle?) = Unit
     override fun onSaveInstanceState(outState: Bundle) = Unit
