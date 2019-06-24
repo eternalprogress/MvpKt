@@ -13,7 +13,7 @@ import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.jvm.jvmErasure
 
 abstract class BaseFragment<out P: BasePresenter<BaseFragment<P>>>: IMvpView<P>,Fragment() {
-    override val mPresenter: P
+    final override val mPresenter: P
 
     init {
         mPresenter = createPresenterKt()
